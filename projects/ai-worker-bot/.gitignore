@@ -1,0 +1,11 @@
+# Generated outputs contain task data and may be large.
+output/
+*.mp4
+*.png
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
