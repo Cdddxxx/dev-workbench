@@ -1,0 +1,61 @@
+name: AI Worker Bot - free offline video smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'projects/ai-worker-bot/**'
+      - '.github/workflows/ai-worker-demo.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: projects/ai-worker-bot
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install free offline render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak fonts-noto-cjk
+          python -m pip install 'Pillow>=9.0'
+      - name: Run unit tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: Generate 43-second prototype video and HTML deliverable
+        run: PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-001 --render --voice
+      - name: Verify video codecs and duration
+        run: |
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          root = Path('output/day-001')
+          data = json.loads((root / 'episode.json').read_text(encoding='utf-8'))
+          html_file = root / data['deliverable']
+          assert hashlib.sha256(html_file.read_bytes()).hexdigest() == data['deliverable_sha256']
+          probe = json.loads(subprocess.check_output([
+              'ffprobe', '-v', 'error', '-show_entries',
+              'format=duration:stream=codec_name,width,height,avg_frame_rate',
+              '-of', 'json', str(root / 'episode.mp4')], text=True))
+          assert any(s['codec_name'] == 'h264' and s['width'] == 720 and s['height'] == 1280
+                     for s in probe['streams'])
+          assert any(s['codec_name'] == 'aac' for s in probe['streams'])
+          assert abs(float(probe['format']['duration']) - data['render']['duration_sec']) < 0.2
+          print('Verified',probe['format']['duration'],'seconds; SHA256 matches deliverable')
+          PY
+      - name: Upload reproducible demo bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-worker-bot-day-001-demo
+          path: projects/ai-worker-bot/output/day-001/
+          if-no-files-found: error
+          retention-days: 14

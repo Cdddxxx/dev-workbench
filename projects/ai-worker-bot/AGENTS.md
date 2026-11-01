@@ -11,3 +11,10 @@
 7. 所有任务执行有审计记录，不隐瞒人为参与。必要时通过 Issues 追踪，不使用聊天作为唯一待办清单。
 
 验证指令：`PYTHONPATH=src python -m unittest discover -s tests -v`。视频需要 Pillow、FFmpeg 和中文字体；如缺环境，明确区分测试通过与视频渲染通过。
+
+v0.2 迭代注意：`render.py` 输出 7 幕动态竖屏视频；`voice.py` 只用离线 eSpeak 制作机器人配音。不要把“基于源码的网页示意图”当成浏览器实录；任何视频发布前需在手机上听审。完整复现命令：
+
+```sh
+PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-001 --render --voice
+PYTHONPATH=src python -m unittest discover -s tests -v
+```

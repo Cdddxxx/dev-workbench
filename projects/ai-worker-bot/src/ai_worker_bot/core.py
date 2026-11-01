@@ -38,6 +38,7 @@ def build_website(task: dict[str, str]) -> str:
     tagline = html.escape(task["tagline"], quote=True)
     goal = html.escape(task["goal"], quote=True)
     request = html.escape(task["request"], quote=True)
+    label = html.escape(task["id"].replace("-", " ").upper(), quote=True)
     return f'''<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -62,7 +63,7 @@ footer {{ margin-top: 32px; font-size: 13px; color: #a9a5ad; }}
 </head>
 <body>
 <main>
-  <mark>DAY 01 · 实际交付</mark>
+  <mark>{label} · 本地生成</mark>
   <h1>{name}</h1>
   <p class="lead">{tagline}</p>
   <div class="card"><div class="label">接到的任务</div><p>{request}</p>
@@ -101,12 +102,20 @@ def run_task(task: dict[str, str], output: Path) -> dict[str, Any]:
     site_path.write_text(page, encoding="utf-8")
     digest = hashlib.sha256(page.encode("utf-8")).hexdigest()
     scenes = [
-        {"title": "今天开始打工", "caption": "我是 AI 临时工。今天不吹牛，先交一个作品。", "duration_sec": 4},
-        {"title": "接到任务", "caption": task["request"], "duration_sec": 5},
-        {"title": "动手制作", "caption": "我用本地程序生成了一个真正能打开的网页。", "duration_sec": 5},
-        {"title": "交付证据", "caption": f"交付文件：index.html｜校验码：{digest[:10]}", "duration_sec": 5},
-        {"title": "真实边界", "caption": "目前是规则程序原型，不是假装全自主 AI。", "duration_sec": 5},
-        {"title": "下一单", "caption": "你想让我接什么任务？欢迎提出可验证的挑战。", "duration_sec": 4},
+        {"title": "今天开始打工", "caption": "我是 AI 临时工。今天不吹牛，先交一个作品。", "duration_sec": 5,
+         "voice_line": "第一天上岗。我先交一份能打开的作品。"},
+        {"title": "接到任务", "caption": task["request"], "duration_sec": 6,
+         "voice_line": "今天的任务，是生成一个能离线打开的网页。"},
+        {"title": "动手制作", "caption": "我用本地程序生成了一个真正能打开的网页。", "duration_sec": 6,
+         "voice_line": "我用本地程序，把网页真正写到了磁盘。"},
+        {"title": "网页预览", "caption": "这是根据网页代码绘制的界面示意，并非浏览器截图。", "duration_sec": 6,
+         "voice_line": "网页已经生成。这里展示的是界面示意。"},
+        {"title": "交付证据", "caption": f"交付文件：index.html｜校验码：{digest[:10]}", "duration_sec": 7,
+         "voice_line": "文件已经生成，并且留下了校验码。"},
+        {"title": "真实边界", "caption": "目前是规则程序原型，不是假装全自主 AI。", "duration_sec": 7,
+         "voice_line": "但我还不是自主机器人，不会假装自己什么都能做。"},
+        {"title": "下一单", "caption": "你想让我接什么任务？欢迎提出可验证的挑战。", "duration_sec": 6,
+         "voice_line": "下一单交给评论区。你想让我做什么？"},
     ]
     manifest: dict[str, Any] = {
         "task_id": task["id"],
@@ -115,8 +124,8 @@ def run_task(task: dict[str, str], output: Path) -> dict[str, Any]:
         "task_request": task["request"],
         "deliverable": "deliverable/index.html",
         "deliverable_sha256": digest,
-        "verified_claim": "Generated a self-contained HTML page from input fields",
-        "not_verified": ["autonomous LLM planning", "website deployed", "platform publishing", "comments ingested", "revenue"],
+        "verified_claim": "Generated a self-contained static HTML landing page from validated input fields",
+        "not_verified": ["autonomous LLM planning", "website browser-tested", "website deployed", "platform publishing", "comments ingested", "revenue"],
         "human_review_required": True,
         "paid_api_calls": 0,
         "direct_api_cost_cny": 0,

@@ -49,7 +49,9 @@ class TaskTests(unittest.TestCase):
             self.assertEqual(manifest["mode"], "deterministic-offline-prototype")
             self.assertEqual(manifest["paid_api_calls"], 0)
             self.assertEqual(len(manifest["deliverable_sha256"]), 64)
-            self.assertIn("00:00:28,000", (root / "captions.srt").read_text(encoding="utf-8"))
+            self.assertIn("00:00:43,000", (root / "captions.srt").read_text(encoding="utf-8"))
+            self.assertEqual(len(manifest["scenes"]), 7)
+            self.assertTrue(all("voice_line" in x for x in manifest["scenes"]))
 
     def test_srt_durations_checked(self):
         with self.assertRaises(ValueError):
