@@ -22,7 +22,10 @@ class OperatingLessonsSchemaTests(unittest.TestCase):
                 self.assertTrue(case[field])
                 self.assertTrue(all(isinstance(x, str) and x.strip() for x in case[field]))
         self.assertEqual(len(ids), len(set(ids)))
-        self.assertGreaterEqual(len(ids), 10)
+        self.assertGreaterEqual(len(ids), 16)
+        self.assertTrue({"reread-at-every-stage", "hash-is-not-understanding",
+                         "not-merely-wronged-reliable", "fan-versus-boss-strategy",
+                         "ambition-paced-by-evidence", "visual-prototype-not-release"}.issubset(ids))
 
     def test_handoff_requires_lessons_and_explains_limits(self):
         self.assertIn("OPERATING_LESSONS.md", (ROOT / "docs/CODEX_HANDOFF.md").read_text())
