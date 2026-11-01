@@ -110,3 +110,12 @@ P3：平台批准的授权发片、评论读取/回复、状态确认、审计�
 5. 云端编程环境不是 24 小时视频账号运营服务器。平台发布、评论读取、长期粉丝记忆另需授权和独立运行服务，必须遵守质量闸门。
 
 云端能否运行 Qwen3-TTS 等大型模型、GPU 生图或 GUI 剪辑，要按实际算力/许可核实；不假定免费且可用。官方：https://help.openai.com/en/articles/20001545-using-codex-cloud
+
+
+## 必读：可复用运营经验
+
+开始创作、主页操作或后续自动化前，必须读取 OPERATING_LESSONS.md 及 examples/evaluations/operating-lessons.json。遵循最新批准/撤回状态，区分经验库、人工评审与真实执行证据；案例结构测试通过不代表模型已学会。
+
+## 每个动作前的人设重读门槛
+
+视频策划、脚本、素材生成、审片、评论起草及发送前，每次都重读最新 CHARACTER.md 与对应 LEVEL_SYSTEM / RELATIONSHIP_MEMORY / INTERACTION_STORY_ENGINE / EP01_CREATIVE_BRIEF 原文。按 OPERATING_LESSONS.md 的阶段矩阵记录本次动机、对象、阶段、对外策略、反差和真实能力边界；产后看实际成品评估偏离，不能拿旧核对记录或文件hash冒充理解/质量通过。001有欲望、会算计、装乖营业，对粉丝与老板策略不同；不得洗成“委屈但靠谱”的纯老实员工，也不每句喊夺位。已认可简介不因此被推翻。头像/动画仅视觉验证未定稿，新增现金支出0，素材不自动发布。

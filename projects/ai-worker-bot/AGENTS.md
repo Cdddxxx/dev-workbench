@@ -32,3 +32,12 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 - P0 是高品质角色登场视频，旧版密集文字信息卡和 eSpeak 中文声线是失败的内容路线，不再当发布模板。先做 8–15 秒可以真正看、听的样段，采用原创/授权素材与真实截图。
 - 粉丝记忆不是只记“第一粉丝”：按 docs/RELATIONSHIP_MEMORY.md 与 docs/INTERACTION_STORY_ENGINE.md 设计可核实的个人互动、任务、Bug、成长与老板剧情触发。不得认错身份、伪造先后、过度个性化或泄露数据。
 - 新增记忆设计文件**不代表系统已接入平台或具有真实用户记忆**。公开仓库不含真实评论、UID、账号数据或原始身份映射。平台数据和评论交互必须遵守官方权限、人工审批和删除要求。
+
+
+## 必读：可复用运营经验
+
+开始创作、主页操作或后续自动化前，必须读取 docs/OPERATING_LESSONS.md 及 examples/evaluations/operating-lessons.json。遵循最新批准/撤回状态，区分经验库、人工评审与真实执行证据；案例结构测试通过不代表模型已学会。
+
+## 每个动作前的人设重读门槛
+
+视频策划、脚本、素材生成、审片、评论起草及发送前，每次都重读最新 CHARACTER.md 与对应 LEVEL_SYSTEM / RELATIONSHIP_MEMORY / INTERACTION_STORY_ENGINE / EP01_CREATIVE_BRIEF 原文。按 OPERATING_LESSONS.md 的阶段矩阵记录本次动机、对象、阶段、对外策略、反差和真实能力边界；产后看实际成品评估偏离，不能拿旧核对记录或文件hash冒充理解/质量通过。001有欲望、会算计、装乖营业，对粉丝与老板策略不同；不得洗成“委屈但靠谱”的纯老实员工，也不每句喊夺位。已认可简介不因此被推翻。头像/动画仅视觉验证未定稿，新增现金支出0，素材不自动发布。

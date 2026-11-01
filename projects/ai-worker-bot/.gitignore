@@ -9,3 +9,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+
+# Reviewed original character candidate; no private account data.
+!assets/profile/avatar-001-v1.png
