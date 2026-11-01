@@ -67,3 +67,7 @@ PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-
 [全链路运营架构](docs/AGENT_ARCHITECTURE.md) 规划了真实任务执行、选题、角色编剧、原创视觉、合规发布、评论回复、长期记忆和数据复盘；目前只是分阶段建设的架构，**没有实际接入平台或自动回评**。
 
 [声音选型与试听规范](docs/VOICE_SELECTION.md) 淘汰 eSpeak 中文声音作为发布级配音。首选试听 Qwen3-TTS 1.7B 中文青年男声 Dylan，以同一声线表演正式汇报、腹黑 OS、营业笑脸；**尚未下载模型或真人试听**。发布前质量闸门和未发送评论草稿已加入 operations.py，具体行为由测试约束。
+
+## 本地 Codex 接手（2026-11-01）
+
+请从 [Codex 交接入口](docs/CODEX_HANDOFF.md) 或 [可复制启动指令](docs/CODEX_START_PROMPT.md) 开始，不必复述这次聊天。新增 [第一期创作简报](docs/EP01_CREATIVE_BRIEF.md)、[可验证粉丝关系记忆](docs/RELATIONSHIP_MEMORY.md) 和 [互动剧情事件引擎](docs/INTERACTION_STORY_ENGINE.md)，把“老粉回访/共同经历/角色成长”做成可扩展能力而非固定第一个粉丝话术。**这些新增文件是设计与移交资料，非已接入自动运营系统。**
