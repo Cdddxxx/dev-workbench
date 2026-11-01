@@ -56,7 +56,7 @@
 
 ## 完整运营方向与语音质量闸门（2026-11-01）
 
-- 已新增 AGENT_ARCHITECTURE.md（**未来目标架构**）与 VOICE_SELECTION.md（主声线首选试听 Qwen3-TTS 0.6B / Dylan；三态声音需要真人试听；旧 eSpeak 不可直接用于发布）。
+- 已新增 AGENT_ARCHITECTURE.md（**未来目标架构**）与 VOICE_SELECTION.md（主声线首选试听 Qwen3-TTS 1.7B / Dylan；三态声音需要真人试听；旧 eSpeak 不可直接用于发布）。
 - 已实现纯离线 operations.py（预发布审核检查、状态转换、未发送评论草稿）及 voice_profile.py（试听脚本元数据）；scripts/voice_audition_qwen.py 需要本地模型文件及可选依赖，**此处未安装权重、未生成新音频**。
 - 原有 17 项 + 新增 7 项边界单测，**本地共 24/24 通过**；GitHub CI 待本次提交后核验。
 - 平台账号绑定 0、平台发布 0、实际评论读取/发送 0、自然声线真实试听 0；旧 54 秒视频仍为不合格 eSpeak 技术演示，不能发布。

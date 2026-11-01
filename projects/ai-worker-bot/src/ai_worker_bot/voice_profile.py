@@ -7,7 +7,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Literal
 
-MODEL_ID = "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
+MODEL_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"
 SPEAKER = "Dylan"  # youthful Beijing Chinese voice; subject to human audition
 
 

@@ -15,15 +15,18 @@
 
 | 优先 | 模型/声线 | 为什么选择 | 是否已经实际合成并试听 |
 |---|---|---|---|
-| **1** | **Qwen3-TTS-12Hz-0.6B-CustomVoice / Dylan** | 官方提供中文北京青年男声，可由 `instruct` 影响语气，适合从死板到腹黑再营业的反差 | **否**；当前环境没有权重，待测试 |
+| **1** | **Qwen3-TTS-12Hz-1.7B-CustomVoice / Dylan** | 官方提供中文北京青年男声，可由 `instruct` 影响语气，适合从死板到腹黑再营业的反差 | **否**；当前环境没有权重，待测试 |
 | 2 | 相同模型 / Eric | 活泼成都青年男声；主音色若太严肃/京腔太重则作为对照 | **否** |
-| 3 | MeloTTS 中文青年男声 | 官方称支持中英混读、CPU 运行以及免费商业使用，作为资源有限时备选；情感控制可能弱 | **否** |
+| 3 | Qwen3-TTS 0.6B / Dylan | 更轻量的固定声线对照，但官方产品对其指令情绪控制支持有限，不作为三态表演的默认模型 | **否** |
+| 4 | MeloTTS 中文青年男声 | 官方称支持中英混读、CPU 运行以及免费商业使用，作为资源有限时备选；情感控制可能弱 | **否** |
+
+**选择 1.7B 而非 0.6B**：官方产品对 1.7B CustomVoice 标记了明确的情绪/指令控制能力；0.6B 虽有相同声线，但情绪控制支持说明不一致，不能把它当可用保证。
 
 Qwen3-TTS 模型和官方样例有 Apache-2.0 开源权重，**但运行仍需模型文件、算力/存储及许可证复核**。权重仓库总量约数 GB，不应在没有用户同意或硬件条件验证前下载、付费托管或声明可本地实时运行。
 
-- 模型与声线官方说明：https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
+- 模型与声线官方说明：https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice
 - 官方源码/接口：https://github.com/QwenLM/Qwen3-TTS
-- 官方权重许可证与体积：https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice/tree/main
+- 官方权重许可证与体积：https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice/tree/main
 - 轻量备选 MeloTTS：https://github.com/myshell-ai/MeloTTS
 
 ## 试听脚本（代码已添加，声音尚未生成）
@@ -55,3 +58,5 @@ python scripts/voice_audition_qwen.py --model-dir /path/to/approved/local/model 
 - ❌ 没有安装 Qwen3 权重，没生成/听过新的中文 WAV，尚未确认主声线品质。
 - ❌ 当前 54 秒视频仍是旧 eSpeak 音轨，不是新配音版。
 - ❌ 没有接入每句配音与字幕的自动时间轴对齐；需要在新声线通过后改造制作模块。
+
+- 官方产品分级（1.7B 支持指令风格控制，0.6B 不明确支持）：https://qwen.ai/blog?id=qwen3tts-0115

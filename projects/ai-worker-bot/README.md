@@ -66,4 +66,4 @@ PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-
 
 [全链路运营架构](docs/AGENT_ARCHITECTURE.md) 规划了真实任务执行、选题、角色编剧、原创视觉、合规发布、评论回复、长期记忆和数据复盘；目前只是分阶段建设的架构，**没有实际接入平台或自动回评**。
 
-[声音选型与试听规范](docs/VOICE_SELECTION.md) 淘汰 eSpeak 中文声音作为发布级配音。首选试听 Qwen3-TTS 0.6B 中文青年男声 Dylan，以同一声线表演正式汇报、腹黑 OS、营业笑脸；**尚未下载模型或真人试听**。发布前质量闸门和未发送评论草稿已加入 operations.py，具体行为由测试约束。
+[声音选型与试听规范](docs/VOICE_SELECTION.md) 淘汰 eSpeak 中文声音作为发布级配音。首选试听 Qwen3-TTS 1.7B 中文青年男声 Dylan，以同一声线表演正式汇报、腹黑 OS、营业笑脸；**尚未下载模型或真人试听**。发布前质量闸门和未发送评论草稿已加入 operations.py，具体行为由测试约束。

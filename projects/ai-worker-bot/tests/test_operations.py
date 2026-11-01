@@ -21,6 +21,7 @@ class OperationsTests(unittest.TestCase):
     def test_voice_candidate_exists_and_not_evaluated(self):
         plan = audition_plan()
         self.assertEqual(plan["speaker"], "Dylan")
+        self.assertIn("1.7B-CustomVoice", plan["model"])
         self.assertIn("UNTESTED", plan["status"])
         self.assertEqual({x["key"] for x in plan["takes"]}, {"work", "inner_os", "service_smile"})
         self.assertFalse(plan["legacy_espeak_release_allowed"])
