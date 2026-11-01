@@ -110,3 +110,8 @@ P3：平台批准的授权发片、评论读取/回复、状态确认、审计�
 5. 云端编程环境不是 24 小时视频账号运营服务器。平台发布、评论读取、长期粉丝记忆另需授权和独立运行服务，必须遵守质量闸门。
 
 云端能否运行 Qwen3-TTS 等大型模型、GPU 生图或 GUI 剪辑，要按实际算力/许可核实；不假定免费且可用。官方：https://help.openai.com/en/articles/20001545-using-codex-cloud
+
+
+## 必读：可复用运营经验
+
+开始创作、主页操作或后续自动化前，必须读取 OPERATING_LESSONS.md 及 examples/evaluations/operating-lessons.json。遵循最新批准/撤回状态，区分经验库、人工评审与真实执行证据；案例结构测试通过不代表模型已学会。

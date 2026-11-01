@@ -75,3 +75,17 @@ PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-
 ## 手机端 Codex Cloud 项目接手
 
 已发布的 Codex Cloud 环境可直接读取 GitHub 仓库并执行云端编程/测试，无需用户电脑持续开机。第一次在网页/桌面端配置并发布环境，随后手机可继续任务。见 [交接说明](docs/CODEX_HANDOFF.md)。云端开发任务不是全天候账号运营服务。
+
+
+## 离线账号入驻工作包（不等于已接入）
+
+```sh
+PYTHONPATH=src python -m ai_worker_bot.onboarding \
+  --provider douyin --task examples/day-01.json --output output/onboarding-001
+```
+
+可选 provider 为 `douyin`、`wechat_channels`、`kuaishou`，不是三个已实现的接口。
+程序生成继承工号001设定的主页资料草稿、身份/验证/权限/资料回读前置检查、
+真实 HTML 任务成果、磁盘 SHA-256 核验和审计记录。输出目录必须是新目录，防止覆盖。
+所有平台均明确 `platform_adapter_not_implemented`，**绝不注册、登录、提交资料、发布或回复**。
+退出码 0 只代表离线工作包生成成功。详见 [入驻准备边界](docs/ACCOUNT_ONBOARDING.md)。

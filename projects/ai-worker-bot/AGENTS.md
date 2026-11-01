@@ -32,3 +32,8 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 - P0 是高品质角色登场视频，旧版密集文字信息卡和 eSpeak 中文声线是失败的内容路线，不再当发布模板。先做 8–15 秒可以真正看、听的样段，采用原创/授权素材与真实截图。
 - 粉丝记忆不是只记“第一粉丝”：按 docs/RELATIONSHIP_MEMORY.md 与 docs/INTERACTION_STORY_ENGINE.md 设计可核实的个人互动、任务、Bug、成长与老板剧情触发。不得认错身份、伪造先后、过度个性化或泄露数据。
 - 新增记忆设计文件**不代表系统已接入平台或具有真实用户记忆**。公开仓库不含真实评论、UID、账号数据或原始身份映射。平台数据和评论交互必须遵守官方权限、人工审批和删除要求。
+
+
+## 必读：可复用运营经验
+
+开始创作、主页操作或后续自动化前，必须读取 docs/OPERATING_LESSONS.md 及 examples/evaluations/operating-lessons.json。遵循最新批准/撤回状态，区分经验库、人工评审与真实执行证据；案例结构测试通过不代表模型已学会。
