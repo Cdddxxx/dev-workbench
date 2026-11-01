@@ -61,3 +61,9 @@ PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-
 仓库根目录 `.github/workflows/ai-worker-demo.yml` 在每次相关源代码提交时，用 GitHub 的**公开仓库标准 Linux Runner** 执行测试、重建视频和校验视频/HTML 的 SHA-256；然后上传可直接下载的视频和网页打包产物为 GitHub Actions Artifact（保留 14 天）。这保证之后可以在不依赖聊天临时文件的情况下重建样片。Actions 在仓库配置允许的情况下才会执行，务必检查实际运行结果。
 
 公开仓库标准 Runner 当前不按计算分钟计费，但 GitHub 账户的 Artifact 存储仍受额度限制；本项目的测试包约 1 MB。
+
+## 完整 AI 运营能力与新配音决策（2026-11-01）
+
+[全链路运营架构](docs/AGENT_ARCHITECTURE.md) 规划了真实任务执行、选题、角色编剧、原创视觉、合规发布、评论回复、长期记忆和数据复盘；目前只是分阶段建设的架构，**没有实际接入平台或自动回评**。
+
+[声音选型与试听规范](docs/VOICE_SELECTION.md) 淘汰 eSpeak 中文声音作为发布级配音。首选试听 Qwen3-TTS 0.6B 中文青年男声 Dylan，以同一声线表演正式汇报、腹黑 OS、营业笑脸；**尚未下载模型或真人试听**。发布前质量闸门和未发送评论草稿已加入 operations.py，具体行为由测试约束。

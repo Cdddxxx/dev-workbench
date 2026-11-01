@@ -18,3 +18,10 @@ v0.3 迭代注意：`render.py` 输出 7 幕动态竖屏视频；`voice.py` 只�
 PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-001 --render --voice
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
+
+## 接手新规则：声音、发布和评论
+
+- 必须先读 docs/AGENT_ARCHITECTURE.md 和 docs/VOICE_SELECTION.md。完整能力不等于当前已实现，禁止虚报自动发片或自主回评。
+- eSpeak 仅限工程演示，禁止作为发布级中文主声线；新的 Qwen3-TTS / Dylan 仍待实际试听。没有模型就明确报错，不要偷偷回退。
+- 发布必须先通过真结果、真人手机听审、素材授权与隐私、AI/虚构演绎标识和用户明确审核。API 发布还需官方权限及当次用户明确感知。评论先保留可追溯来源、生成未发送草稿。
+- 新代码 src/ai_worker_bot/operations.py 是离线闸门，不执行任何平台动作。运行完整单测验收。
