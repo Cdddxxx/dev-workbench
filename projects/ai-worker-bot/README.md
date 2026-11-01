@@ -71,3 +71,7 @@ PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-
 ## 本地 Codex 接手（2026-11-01）
 
 请从 [Codex 交接入口](docs/CODEX_HANDOFF.md) 或 [可复制启动指令](docs/CODEX_START_PROMPT.md) 开始，不必复述这次聊天。新增 [第一期创作简报](docs/EP01_CREATIVE_BRIEF.md)、[可验证粉丝关系记忆](docs/RELATIONSHIP_MEMORY.md) 和 [互动剧情事件引擎](docs/INTERACTION_STORY_ENGINE.md)，把“老粉回访/共同经历/角色成长”做成可扩展能力而非固定第一个粉丝话术。**这些新增文件是设计与移交资料，非已接入自动运营系统。**
+
+## 手机端 Codex Cloud 项目接手
+
+已发布的 Codex Cloud 环境可直接读取 GitHub 仓库并执行云端编程/测试，无需用户电脑持续开机。第一次在网页/桌面端配置并发布环境，随后手机可继续任务。见 [交接说明](docs/CODEX_HANDOFF.md)。云端开发任务不是全天候账号运营服务。

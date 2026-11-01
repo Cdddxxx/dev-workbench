@@ -96,3 +96,17 @@ P3：平台批准的授权发片、评论读取/回复、状态确认、审计�
 - **阶段选择**：先用 Codex Cloud 或本地 Codex 开发，不购买服务器；视觉/配音/录像确需本机 GPU 时才开本地任务。等确实需要连续发布/处理真实评论并取得平台权限后，再核算和征求用户批准以部署独立运行环境。
 
 接手后第一步：检查用户所处操作系统、是否已有 clone/工作树、本地权限与工具，决定执行位置，不要求用户先学 Git 命令。第一集创作质量、语音试听仍是优先事项。
+
+## 手机 + Codex Cloud：优先接手路线（2026-11-01 补充）
+
+**优先：使用发布好的 Codex Cloud 环境连接 GitHub，手机负责布置任务和验收，不需要用户电脑常开或本地 clone。**
+
+首次配置：Codex Cloud 环境需先从 Web/桌面端创建并发布；之后在手机端 Codex → Cloud 选择已发布环境，启动/继续任务。手机的 Remote 控制电脑与 Codex Cloud 是两种不同方式。
+
+1. 在 https://chatgpt.com/codex/ 进入 Codex Cloud，选择 Create environment（网页或桌面端；若不显示，请核实账号权限）；连接 GitHub（如提示），选 Cdddxxx/dev-workbench。
+2. 项目实际目录 projects/ai-worker-bot。让 Codex 先读 AGENTS.md、README.md、docs/CODEX_HANDOFF.md、docs/STATUS.md、第一期创作简报等，再检视 Python、FFmpeg、中文字体、可用图像/语音能力。
+3. 检查环境报告，无需先开付费外部服务、下载大型模型或上传私人凭据；确认后 Publish。
+4. 以后可从手机 Codex Cloud 中交代任务、查看测试结果、审查更改；第一项任务是先产出 8–15 秒可看可听的角色登场样片，不能再用旧的密集文字框模板。
+5. 云端编程环境不是 24 小时视频账号运营服务器。平台发布、评论读取、长期粉丝记忆另需授权和独立运行服务，必须遵守质量闸门。
+
+云端能否运行 Qwen3-TTS 等大型模型、GPU 生图或 GUI 剪辑，要按实际算力/许可核实；不假定免费且可用。官方：https://help.openai.com/en/articles/20001545-using-codex-cloud
