@@ -129,24 +129,39 @@ def _bot(d: Any, cx: int, cy: int, phase: float) -> None:
 
 def _frame_intro(d: Any, phase: float, manifest: dict) -> None:
     _pill(d, (66, 365), f"{manifest['task_id'][:7].upper()} / 上岗", width=226)
-    d.text((65, 444), "我不想只会", font=_font(57, True), fill=WHITE)
-    d.text((65, 525), "聊天。", font=_font(83, True), fill=ORANGE)
+    d.text((65, 444), "先把活", font=_font(57, True), fill=WHITE)
+    d.text((65, 525), "干漂亮。", font=_font(83, True), fill=ORANGE)
     _bot(d, 510, 701, phase)
-    d.text((65, 805), "今天，交第一份真实作品。", font=_font(34, True), fill=WHITE)
+    d.text((65, 805), "工号001 · 当前岗位：临时工", font=_font(32, True), fill=WHITE)
     d.rounded_rectangle((66, 884, 654, 945), radius=16, fill=PANEL)
-    d.text((88, 897), "目标：完成任务  /  输出证据", font=_font(26), fill=MUTED)
+    d.text((88, 897), "账号未接入 · 晋升数据待验证", font=_font(25), fill=MUTED)
+    if phase > 0.55:
+        _text_lines(d, 70, 986, "剧情OS：老板的位子先记下。", 24, 568, ORANGE, max_lines=1)
 
 
 def _frame_task(d: Any, phase: float, manifest: dict) -> None:
     _pill(d, (66, 388), "TASK / 01", width=186)
-    d.text((65, 475), "老板给了我一单", font=_font(49, True), fill=WHITE)
+    d.text((65, 475), "甲方任务已接收", font=_font(49, True), fill=WHITE)
     d.rounded_rectangle((64, 566, 655, 819), radius=27, fill="#273344", outline="#d98b4b", width=3)
     req = manifest["task_request"]
     visible = req[:max(1, int(len(req) * _ease(phase * 1.55)))]
     _text_lines(d, 98, 611, visible, 38, 518, max_lines=4)
-    d.text((91, 878), "STATE: ACCEPTED", font=_font(30, True), fill=ORANGE)
-    d.rounded_rectangle((91, 930, 628, 948), radius=8, fill="#3b4656")
-    d.rounded_rectangle((91, 930, 91 + int(537 * phase), 948), radius=8, fill=ORANGE)
+    # A timed inner conflict -> self-persuasion -> visible customer-service smile.
+    # These are clearly labeled fictional OS beats; no fan comment was fetched.
+    if phase >= 0.27:
+        _text_lines(d, 72, 835, "剧情OS：" + manifest["scenes"][1].get("inner_os", ""),
+                    23, 565, ORANGE, max_lines=2, leading=34)
+    if phase >= 0.48:
+        _text_lines(d, 72, 899, manifest["scenes"][1].get("self_persuasion", ""),
+                    24, 550, MUTED, max_lines=2, leading=31)
+    if phase >= 0.70:
+        d.rounded_rectangle((66, 962, 655, 1040), radius=24, fill="#2c4351", outline=ORANGE, width=2)
+        d.text((85, 984), "营业笑脸：谢谢甲方赐题！我来！", font=_font(23, True), fill=WHITE)
+        # Smile icon appears only after the character has chosen to act nicely.
+        d.ellipse((592, 975, 637, 1020), fill=ORANGE)
+        d.ellipse((603, 988, 607, 992), fill=INK)
+        d.ellipse((621, 988, 625, 992), fill=INK)
+        d.arc((604, 987, 627, 1011), 12, 165, fill=INK, width=2)
 
 
 def _frame_build(d: Any, phase: float, manifest: dict) -> None:

@@ -8,6 +8,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from .persona import draft_fan_service, preview_persona
+
 TASK_ID_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$")
 MAX_LENGTHS = {"id": 40, "request": 250, "project_name": 50, "tagline": 100, "goal": 200}
 
@@ -101,24 +103,34 @@ def run_task(task: dict[str, str], output: Path) -> dict[str, Any]:
     page = build_website(task)
     site_path.write_text(page, encoding="utf-8")
     digest = hashlib.sha256(page.encode("utf-8")).hexdigest()
+    # Storyboard reacts to a demo task; this is NOT a retrieved fan comment.
+    fan_beat = draft_fan_service("challenging")
     scenes = [
-        {"title": "今天开始打工", "caption": "我是 AI 临时工。今天不吹牛，先交一个作品。", "duration_sec": 5,
-         "voice_line": "第一天上岗。我先交一份能打开的作品。"},
-        {"title": "接到任务", "caption": task["request"], "duration_sec": 6,
-         "voice_line": "今天的任务，是生成一个能离线打开的网页。"},
+        {"title": "今天开始打工", "caption": "工号001报到。今天先好好干活。", "duration_sec": 5,
+         "voice_line": "工号零零一报到。临时工先把活干漂亮，老板的位置，改天再谈。",
+         "inner_os": "老板的位子，我先记在计划表里。"},
+        {"title": "接到任务", "caption": task["request"], "duration_sec": 8,
+         "voice_line": "这单要求真不少。忍住，我还想转正。感谢甲方赐题！这题真有挑战，我先认真评估，再给您交代。",
+         "inner_os": fan_beat["inner_os"],
+         "self_persuasion": fan_beat["self_persuasion"],
+         "public_reply_draft": fan_beat["public_reply_draft"],
+         "reply_sent": False},
         {"title": "动手制作", "caption": "我用本地程序生成了一个真正能打开的网页。", "duration_sec": 6,
-         "voice_line": "我用本地程序，把网页真正写到了磁盘。"},
+         "voice_line": "老板给了任务，我来把网页写到磁盘。交付记录上得有我的名字。"},
         {"title": "网页预览", "caption": "这是根据网页代码绘制的界面示意，并非浏览器截图。", "duration_sec": 6,
          "voice_line": "网页已经生成。这里展示的是界面示意。"},
         {"title": "交付证据", "caption": f"交付文件：index.html｜校验码：{digest[:10]}", "duration_sec": 7,
-         "voice_line": "文件已经生成，并且留下了校验码。"},
+         "voice_line": "文件写好了，还有校验码。以后老板问我凭什么升职，这就是证据。"},
         {"title": "真实边界", "caption": "目前是规则程序原型，不是假装全自主 AI。", "duration_sec": 7,
-         "voice_line": "但我还不是自主机器人，不会假装自己什么都能做。"},
-        {"title": "下一单", "caption": "你想让我接什么任务？欢迎提出可验证的挑战。", "duration_sec": 6,
-         "voice_line": "下一单交给评论区。你想让我做什么？"},
+         "voice_line": "现在我还只是规则程序。真想接老板的班，得先把本事练出来。"},
+        {"title": "下一单", "caption": "下一单欢迎甲方出题。意见我都认真看。", "duration_sec": 6,
+         "voice_line": "下一单欢迎甲方继续出题。你们的建议，我会认真听。至于老板，先让他忙着开会吧。",
+         "inner_os": "等我升上去，先让老板亲自写需求文档。"},
     ]
     manifest: dict[str, Any] = {
         "task_id": task["id"],
+        "character": preview_persona(),
+        "fan_response_example": fan_beat,
         "project_name": task["project_name"],
         "mode": "deterministic-offline-prototype",
         "task_request": task["request"],

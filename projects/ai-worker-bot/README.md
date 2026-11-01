@@ -2,7 +2,7 @@
 
 这是“AI 接真实任务、交真实成果，再把执行过程做成短视频”的**本地实验工程**，不是已上线的自主运营机器人。
 
-**当前 v0.2（M1 第一条动态样片）**：读取规范任务 JSON → 生成可离线打开的静态 HTML 落地页 → 记录 SHA-256 → 生成 7 幕分镜、SRT、日志 → 程序化生成 **720×1280、15fps** 的动态 MP4；如安装免费 `espeak`，可加上离线机器中文配音。已在本地渲染出 **43 秒、H.264 + AAC** 的样片。
+**当前 v0.3（M1 角色成长和互动剧情原型）**：读取规范任务 JSON → 生成可离线打开的静态 HTML 落地页 → 记录 SHA-256 → 生成 7 幕分镜、SRT、日志 → 程序化生成 **720×1280、15fps** 的动态 MP4；如安装免费 `espeak`，可加上离线机器中文配音。v0.2 旧版已渲染过 **43 秒、H.264 + AAC** 的样片；v0.3 新版时长以实际构建为准。
 
 **仍未实现**：接入大模型、处理一般复杂任务、自主决策与记忆、自然的高品质中文人声、真实浏览器/手机端验收、自动读评论、平台授权发布或收入核算。
 
@@ -29,13 +29,9 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 
 运行后打开 `output/day-001/deliverable/index.html` 查看交付的 HTML；播放 `episode.mp4` 预览样片；查看 `WORKLOG.md`、`episode.json` 对照真实执行方式、时长、视频元数据与已验证范围。`output/` 不提交 Git，避免大文件和敏感任务信息；代码可重现产物。
 
-## 角色与语气
-
-已新增 [角色设定 v0.1](docs/CHARACTER.md)：「工号 001 / 想转正的 AI 临时工」会有嘴硬、认真交付、算成本、敢认错的内容人格。**这仍只是创作设计稿，未接入当前规则程序或 LLM Agent。**
-
 ## 边界与审计
 
-- v0.2 仍是**规则驱动的静态网页生成器**，不会自主编程，也没有任何付费 LLM。输入的任务描述不能授权它执行任意 Shell 命令，更不能视为所有自然语言任务都已完成。
+- v0.3 仍是**规则驱动的静态网页生成器和人格演出器**，不会自主编程，也没有任何付费 LLM。输入的任务描述不能授权它执行任意 Shell 命令，更不能视为所有自然语言任务都已完成。
 - 视频里页面图是**根据网页源码绘制的界面示意**，明确标注“非浏览器实录”；不能当成浏览器测试或网站部署的证据。
 - 视频里中文配音来自免费的本地 eSpeak，发音质量有限，**正式发布前要人工听审**。如果没有安装配音工具，`--voice` 会报错，不会冒充有声音。
 - **发布操作、评论互动、运营成本、API 权限**均未接入。样片未经手机端、真人观看效果和平台发布审核验收。
@@ -44,7 +40,16 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 
 ## 接手与追踪
 
-从 [AGENTS.md](AGENTS.md)、[CHARACTER](docs/CHARACTER.md)、[STATUS](docs/STATUS.md)、[ROADMAP](docs/ROADMAP.md)、[DECISIONS](docs/DECISIONS.md) 了解角色设定与真实进度。优先解决创作质量和真实设备验收，再考虑大模型 Agent 或平台自动化。仓库是进度的权威来源，聊天不是。
+从 [AGENTS.md](AGENTS.md)、[STATUS](docs/STATUS.md)、[ROADMAP](docs/ROADMAP.md)、[DECISIONS](docs/DECISIONS.md) 了解真实进度。优先解决创作质量和真实设备验收，再考虑大模型 Agent 或平台自动化。仓库是进度的权威来源，聊天不是。
+
+## 纯离线角色演出自测
+
+```sh
+PYTHONPATH=src python -m unittest discover -s tests -v
+PYTHONPATH=src python -m ai_worker_bot examples/day-01.json --output output/day-001 --render --voice
+```
+
+`episode.json` 内的 `character` 是故事设定元数据；`fan_response_example` 标注未发送、无真实评论来源。没有数据时粉丝数固定为 `null`，不能当真实粉丝数使用。
 
 ## GitHub 持续集成与视频交付
 
