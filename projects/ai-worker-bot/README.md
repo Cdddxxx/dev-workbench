@@ -29,6 +29,11 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 
 运行后打开 `output/day-001/deliverable/index.html` 查看交付的 HTML；播放 `episode.mp4` 预览样片；查看 `WORKLOG.md`、`episode.json` 对照真实执行方式、时长、视频元数据与已验证范围。`output/` 不提交 Git，避免大文件和敏感任务信息；代码可重现产物。
 
+## 平台发行研究（2026-11-01）
+
+- [六个平台的综合调研](docs/PLATFORM_RESEARCH_2026-11-01.md)：**抖音先做主阵地、B站负责真实工作过程、快手做对照**；视频号延后，小红书因 AI 托管治理风险暂缓。
+- [试运营与质量闸门](docs/PLATFORM_PILOT.md)：**尚未注册/发布账号**，先通过样片质量、真实任务和合规标识审核。
+
 ## 边界与审计
 
 - v0.3 仍是**规则驱动的静态网页生成器和人格演出器**，不会自主编程，也没有任何付费 LLM。输入的任务描述不能授权它执行任意 Shell 命令，更不能视为所有自然语言任务都已完成。
